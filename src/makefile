@@ -19,8 +19,8 @@ build : $(APP)
 %.o : %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# $(APP) :
-# 	$(CC) $^ -o $@ $(LFLAGS)
+$(APP) : main.o interface.o
+	$(CC) $^ -o $@ $(LFLAGS)
 
 test : tests
 
