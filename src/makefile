@@ -28,6 +28,10 @@ tests : tests.o
 	$(CC) $(CFLAGS) $^ $(GTEST) $(LFLAGS) -o $@.out
 	./$@.out
 
+style :
+	@clang-format -n --Werror *.hpp --style=Google --ferror-limit=3
+	@clang-format -n --Werror *.cpp --style=Google --ferror-limit=3
+
 cppcheck :
 	cppcheck --std=c++17 --language=c++ --enable=all --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unmatchedSuppression --suppress=unreadVariable --suppress=knownConditionTrueFalse *.cpp *.hpp *.h *.inl
 
