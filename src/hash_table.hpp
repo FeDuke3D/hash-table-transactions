@@ -1,8 +1,8 @@
 #ifndef SRC_HASH_TABLE_HPP_
 #define SRC_HASH_TABLE_HPP_
 
-#include <set>
 #include <fstream>
+#include <set>
 
 #include "abstract_struct_data_base.hpp"
 
@@ -14,10 +14,11 @@ class HashTable : public AbstractStructDatabase<Key, Val> {
   HashTable(HashTable &&other);
   ~HashTable();
 
-  void operator=(const HashTable &other);
-  void operator=(HashTable &&other);
+  HashTable &operator=(const HashTable &other);
+  HashTable &operator=(HashTable &&other);
 
-  bool SET(const Key &key, const Val &value, const size_t &life_time = 0) override;
+  bool SET(const Key &key, const Val &value,
+           const size_t &life_time = 0) override;
   Val GET(const Key &key) override;
   bool EXIST(const Key &key) override;
   bool DEL(const Key &key) override;

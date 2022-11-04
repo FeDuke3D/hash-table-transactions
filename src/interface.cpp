@@ -228,8 +228,9 @@ void Interface::SlotFind() {
 void Interface::SlotShowAll() {
   auto all_records = m_table->SHOWALL();
   int i{1};
-  std::cout << "№    |Last name     |First name    |Year |City          |Coins\n"
-               "-----+--------------+--------------+-----+--------------+------\n";
+  std::cout
+      << "№    |Last name     |First name    |Year |City          |Coins\n"
+         "-----+--------------+--------------+-----+--------------+------\n";
   for (auto& each : all_records) {
     std::string line{};
     line = std::to_string(i);
@@ -267,8 +268,7 @@ void Interface::SlotExport() {
 }
 
 void Interface::CompleteColumn(std::string* line, unsigned size) {
-  for (size_t i{line->size()}; i < size; i++)
-    line->append(" ");
+  for (size_t i{line->size()}; i < size; i++) line->append(" ");
   line->resize(size);
   line->append("|");
 }

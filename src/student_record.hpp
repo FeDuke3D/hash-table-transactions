@@ -26,20 +26,22 @@ class StudentRecord {
   StudentRecord(StudentRecord &&other) { *this = std::move(other); }
   ~StudentRecord() {}
 
-  void operator=(const StudentRecord &other) {
+  StudentRecord &operator=(const StudentRecord &other) {
     if (other.last_name_ != "-") last_name_ = other.last_name_;
     if (other.first_name_ != "-") first_name_ = other.first_name_;
     if (other.year_of_birth_ != -1) year_of_birth_ = other.year_of_birth_;
     if (other.city_ != "-") city_ = other.city_;
     if (other.coins_ != -1) coins_ = other.coins_;
+    return *this;
   }
 
-  void operator=(StudentRecord &&other) {
+  StudentRecord &operator=(StudentRecord &&other) {
     if (other.last_name_ != "-") last_name_ = other.last_name_;
     if (other.first_name_ != "-") first_name_ = other.first_name_;
     if (other.year_of_birth_ != -1) year_of_birth_ = other.year_of_birth_;
     if (other.city_ != "-") city_ = other.city_;
     if (other.coins_ != -1) coins_ = other.coins_;
+    return *this;
   }
 
   bool operator==(const StudentRecord &other) {

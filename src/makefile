@@ -33,9 +33,9 @@ style :
 	@clang-format -n --Werror *.cpp --style=Google --ferror-limit=3
 
 cppcheck :
-	cppcheck --std=c++17 --language=c++ --enable=all --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unmatchedSuppression --suppress=unreadVariable --suppress=knownConditionTrueFalse *.cpp *.hpp *.h *.inl
+	cppcheck --std=c++17 --language=c++ --enable=all --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unmatchedSuppression --suppress=unreadVariable --suppress=knownConditionTrueFalse --suppress=unusedFunction *.cpp *.hpp *.h *.inl
 
-mem :
+mem : clean
 	$(MAKE)  CC="$(CC) -DMEM_TEST" tests
 ifeq ($(OS), Linux)
 	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./tests.out

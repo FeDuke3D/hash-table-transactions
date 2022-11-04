@@ -27,21 +27,23 @@ HashTable<Key, Val>::~HashTable() {
 }
 
 template <class Key, class Val>
-void HashTable<Key, Val>::operator=(const HashTable<Key, Val> &other) {
+HashTable<Key, Val>& HashTable<Key, Val>::operator=(const HashTable<Key, Val> &other) {
   limit_ = other.limit_;
   size_ = other.size_;
   count_ = other.count_;
   resize_lock_ = other.resize_lock_;
   *table_ = *other.table_;
+  return *this;
 }
 
 template <class Key, class Val>
-void HashTable<Key, Val>::operator=(HashTable<Key, Val> &&other) {
+HashTable<Key, Val>& HashTable<Key, Val>::operator=(HashTable<Key, Val> &&other) {
   std::swap(limit_, other.limit_);
   std::swap(size_, other.size_);
   std::swap(count_, other.count_);
   std::swap(resize_lock_, other.resize_lock_);
   std::swap(table_, other.table_);
+  return *this;
 }
 
 template <class Key, class Val>
