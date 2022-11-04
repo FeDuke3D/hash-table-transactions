@@ -253,6 +253,7 @@ int HashTable<Key, Val>::UPLOAD(const std::string &file_name) {
         res++;
       }
     }
+    stream.close();
   } else {
     throw std::invalid_argument("No such file.");
   }
