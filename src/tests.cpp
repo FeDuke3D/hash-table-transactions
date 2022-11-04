@@ -135,6 +135,7 @@ TEST(hash, upload) {
   system("rm foo.dat");
 }
 
+#ifndef MEM_TEST
 TEST(hash, more_del) {
   unsigned seed = time(0), num{10000};
   HashTable<int, int> A;
@@ -151,6 +152,7 @@ TEST(hash, more_del) {
     A.DEL(each);
   }
 }
+#endif  // MEM_TEST
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);

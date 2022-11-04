@@ -35,6 +35,14 @@ style :
 cppcheck :
 	cppcheck --std=c++17 --language=c++ --enable=all --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unmatchedSuppression --suppress=unreadVariable --suppress=knownConditionTrueFalse *.cpp *.hpp *.h *.inl
 
+mem :
+	$(MAKE)  CC="$(CC) -DMEM_TEST" tests
+ifeq ($(OS), Linux)
+	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./tests.out
+else
+	CK_FORK=no leaks --atExit -- ./tests.out
+endif
+
 gcov : gcov_report
 
 gcov_report : clean
